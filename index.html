@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>QuickToolLab - Free Online Tools</title>
-
+<title>QuickToolLab</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-
 body{
-font-family:Arial, Helvetica, sans-serif;
+font-family:Arial;
 margin:0;
-background:#f1f5f9;
+background:#f2f5f9;
 }
 
 header{
 background:#2563eb;
 color:white;
-padding:20px;
 text-align:center;
+padding:20px;
 font-size:28px;
 font-weight:bold;
 }
@@ -30,29 +28,18 @@ padding:20px;
 
 .tool{
 background:white;
-padding:25px;
+padding:20px;
 margin-bottom:20px;
 border-radius:10px;
-box-shadow:0 4px 10px rgba(0,0,0,0.08);
-}
-
-h2{
-margin-top:0;
-}
-
-input{
-padding:10px;
-margin:6px;
-border:1px solid #ccc;
-border-radius:5px;
+box-shadow:0 3px 10px rgba(0,0,0,0.08);
 }
 
 button{
 background:#2563eb;
 color:white;
 border:none;
-padding:10px 16px;
-border-radius:6px;
+padding:10px 15px;
+border-radius:5px;
 cursor:pointer;
 }
 
@@ -60,155 +47,74 @@ button:hover{
 background:#1e40af;
 }
 
+input{
+padding:8px;
+margin:5px;
+}
+
 .result{
 margin-top:10px;
 font-weight:bold;
 color:#2563eb;
 }
-
-footer{
-text-align:center;
-padding:20px;
-color:#666;
-}
-
 </style>
-
 </head>
 
 <body>
 
-<header>
-QuickToolLab
-</header>
+<header>QuickToolLab</header>
 
 <div class="container">
 
-<!-- BMI TOOL -->
-
 <div class="tool">
-
 <h2>BMI Calculator</h2>
 
-<input id="weight" placeholder="Weight (kg)">
-<input id="height" placeholder="Height (cm)">
+<input id="weight" placeholder="Weight kg">
+<input id="height" placeholder="Height cm">
 
 <br><br>
 
 <button onclick="bmi()">Calculate</button>
 
-<div class="result" id="bmiResult"></div>
-
+<div id="bmiResult" class="result"></div>
 </div>
 
-<!-- WATER TOOL -->
 
 <div class="tool">
-
 <h2>Water Intake Calculator</h2>
 
-<input id="waterWeight" placeholder="Weight (kg)">
+<input id="waterWeight" placeholder="Weight kg">
 
 <br><br>
 
 <button onclick="water()">Calculate</button>
 
-<div class="result" id="waterResult"></div>
-
-</div>
-
-<!-- YOUTUBE TITLE TOOL -->
-
-<div class="tool">
-
-<h2>YouTube Title Generator</h2>
-
-<input id="topic" placeholder="Video topic">
-
-<br><br>
-
-<button onclick="yt()">Generate</button>
-
-<div class="result" id="ytResult"></div>
-
-</div>
-
-<!-- RANDOM MOVIE PICKER -->
-
-<div class="tool">
-
-<h2>Random Movie Picker</h2>
-
-<button onclick="movie()">Pick Movie</button>
-
-<div class="result" id="movieResult"></div>
+<div id="waterResult" class="result"></div>
 
 </div>
 
 </div>
-
-<footer>
-Free tools for everyone
-</footer>
 
 <script>
 
 function bmi(){
 
-var w=document.getElementById("weight").value;
+let w=document.getElementById("weight").value;
+let h=document.getElementById("height").value/100;
 
-var h=document.getElementById("height").value/100;
+let result=w/(h*h);
 
-var result=w/(h*h);
-
-document.getElementById("bmiResult").innerHTML="Your BMI: "+result.toFixed(2);
+document.getElementById("bmiResult").innerHTML="BMI: "+result.toFixed(2);
 
 }
 
 function water(){
 
-var w=document.getElementById("waterWeight").value;
+let w=document.getElementById("waterWeight").value;
 
-var intake=(w*0.033).toFixed(2);
+let intake=(w*0.033).toFixed(2);
 
 document.getElementById("waterResult").innerHTML="Drink about "+intake+" liters daily";
-
-}
-
-function yt(){
-
-var topic=document.getElementById("topic").value;
-
-var titles=[
-
-"10 Things You Didn't Know About "+topic,
-"The Truth About "+topic,
-"Beginner Guide to "+topic,
-"I Tried "+topic+" For 7 Days",
-"Why Everyone Is Talking About "+topic
-
-];
-
-var random=titles[Math.floor(Math.random()*titles.length)];
-
-document.getElementById("ytResult").innerHTML=random;
-
-}
-
-function movie(){
-
-var movies=[
-"Inception",
-"Interstellar",
-"The Dark Knight",
-"Fight Club",
-"The Matrix",
-"The Shawshank Redemption"
-];
-
-var random=movies[Math.floor(Math.random()*movies.length)];
-
-document.getElementById("movieResult").innerHTML="Watch: "+random;
 
 }
 
