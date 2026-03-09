@@ -270,6 +270,73 @@ border-top:1px solid #1e293b;
 <div id="palResult" class="result"></div>
 </div>
 
+  <div class="tool">
+<h3>Square Calculator</h3>
+<input id="squareInput" placeholder="Enter number">
+<button onclick="square()">Calculate</button>
+<div id="squareResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Cube Calculator</h3>
+<input id="cubeInput" placeholder="Enter number">
+<button onclick="cube()">Calculate</button>
+<div id="cubeResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Discount Calculator</h3>
+<input id="price">
+<input id="discount">
+<button onclick="discountCalc()">Calculate</button>
+<div id="discountResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Binary Converter</h3>
+<input id="binaryInput">
+<button onclick="toBinary()">Convert</button>
+<div id="binaryResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Random Color Generator</h3>
+<button onclick="randomColor()">Generate</button>
+<div id="colorResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Username Generator</h3>
+<button onclick="usernameGen()">Generate</button>
+<div id="usernameResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Even or Odd Checker</h3>
+<input id="oddInput">
+<button onclick="oddCheck()">Check</button>
+<div id="oddResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Minutes to Hours</h3>
+<input id="minutesInput">
+<button onclick="minutesToHours()">Convert</button>
+<div id="minutesResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Dice Roller</h3>
+<button onclick="dice()">Roll</button>
+<div id="diceResult" class="result"></div>
+</div>
+
+<div class="tool">
+<h3>Random Number 1-100</h3>
+<button onclick="random100()">Generate</button>
+<div id="rand100Result" class="result"></div>
+</div>
+  
 </div>
 </div>
 
@@ -366,6 +433,55 @@ tools[i].style.display=""
 tools[i].style.display="none"
 }
 
+function square(){
+let n=document.getElementById("squareInput").value
+document.getElementById("squareResult").innerText=n*n
+}
+
+function cube(){
+let n=document.getElementById("cubeInput").value
+document.getElementById("cubeResult").innerText=n*n*n
+}
+
+function discountCalc(){
+let p=document.getElementById("price").value
+let d=document.getElementById("discount").value
+document.getElementById("discountResult").innerText=p-(p*d/100)
+}
+
+function toBinary(){
+let n=document.getElementById("binaryInput").value
+document.getElementById("binaryResult").innerText=Number(n).toString(2)
+}
+
+function randomColor(){
+let color="#"+Math.floor(Math.random()*16777215).toString(16)
+document.getElementById("colorResult").innerText=color
+}
+
+function usernameGen(){
+let names=["nova","shadow","pixel","astro","lunar"]
+let num=Math.floor(Math.random()*999)
+document.getElementById("usernameResult").innerText=names[Math.floor(Math.random()*names.length)]+num
+}
+
+function oddCheck(){
+let n=document.getElementById("oddInput").value
+document.getElementById("oddResult").innerText=(n%2==0?"Even":"Odd")
+}
+
+function minutesToHours(){
+let m=document.getElementById("minutesInput").value
+document.getElementById("minutesResult").innerText=(m/60)+" hours"
+}
+
+function dice(){
+document.getElementById("diceResult").innerText=Math.floor(Math.random()*6)+1
+}
+
+function random100(){
+document.getElementById("rand100Result").innerText=Math.floor(Math.random()*100)+1
+}  
 }
 
 }
@@ -374,3 +490,4 @@ tools[i].style.display="none"
 
 </body>
 </html>
+
