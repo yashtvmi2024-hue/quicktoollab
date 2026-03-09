@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random Color</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav><h1>QuickToolLab</h1></nav>
+
+<div class="container">
+
+<h2>Random Color Generator</h2>
+
+<button onclick="color()">Generate</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function color(){
+
+let c="#"+Math.floor(Math.random()*16777215).toString(16)
+
+document.getElementById("result").innerText=c
+
+}
+
+</script>
+
+</body>
+</html>
