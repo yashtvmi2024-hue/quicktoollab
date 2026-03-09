@@ -65,7 +65,7 @@ margin-bottom:10px;
 color:#38bdf8;
 }
 
-.tool input{
+.tool input, textarea{
 width:100%;
 padding:10px;
 margin-top:10px;
@@ -113,172 +113,157 @@ color:#94a3b8;
 </header>
 
 <div class="container">
-
 <div class="tools">
 
-<!-- BMI CALCULATOR -->
-
+<!-- BMI -->
 <div class="tool">
 <h3>BMI Calculator</h3>
-
 <input id="weight" placeholder="Weight (kg)">
 <input id="height" placeholder="Height (cm)">
-
 <button onclick="bmi()">Calculate</button>
-
 <div id="bmiResult" class="result"></div>
 </div>
 
-
-<!-- AGE CALCULATOR -->
-
+<!-- AGE -->
 <div class="tool">
 <h3>Age Calculator</h3>
-
 <input type="date" id="dob">
-
 <button onclick="ageCalc()">Calculate Age</button>
-
 <div id="ageResult" class="result"></div>
 </div>
 
-
-<!-- PERCENTAGE CALCULATOR -->
-
+<!-- PERCENTAGE -->
 <div class="tool">
 <h3>Percentage Calculator</h3>
-
 <input id="total" placeholder="Total Marks">
 <input id="obtained" placeholder="Obtained Marks">
-
 <button onclick="percentage()">Calculate</button>
-
 <div id="percentResult" class="result"></div>
 </div>
 
-
-<!-- PASSWORD GENERATOR -->
-
+<!-- PASSWORD -->
 <div class="tool">
 <h3>Password Generator</h3>
-
 <button onclick="generatePassword()">Generate Password</button>
-
 <div id="passwordResult" class="result"></div>
 </div>
 
-
 <!-- RANDOM NUMBER -->
-
 <div class="tool">
 <h3>Random Number Generator</h3>
-
 <input id="min" placeholder="Minimum">
 <input id="max" placeholder="Maximum">
-
 <button onclick="randomNumber()">Generate</button>
-
 <div id="randomResult" class="result"></div>
 </div>
 
+<!-- WORD COUNTER -->
 <div class="tool">
 <h3>Word Counter</h3>
-
-<textarea id="textInput" placeholder="Enter text here"></textarea>
-
+<textarea id="textInput" placeholder="Enter text"></textarea>
 <button onclick="countWords()">Count Words</button>
-
 <div id="wordResult" class="result"></div>
 </div>
+
+<!-- CHARACTER COUNTER -->
+<div class="tool">
+<h3>Character Counter</h3>
+<textarea id="charInput" placeholder="Enter text"></textarea>
+<button onclick="countChars()">Count Characters</button>
+<div id="charResult" class="result"></div>
+</div>
+
+<!-- TEMPERATURE -->
+<div class="tool">
+<h3>Celsius → Fahrenheit</h3>
+<input id="celsius" placeholder="Enter Celsius">
+<button onclick="convertTemp()">Convert</button>
+<div id="tempResult" class="result"></div>
+</div>
+
+<!-- PALINDROME -->
+<div class="tool">
+<h3>Palindrome Checker</h3>
+<input id="palInput" placeholder="Enter word">
+<button onclick="checkPalindrome()">Check</button>
+<div id="palResult" class="result"></div>
 </div>
 
 </div>
-
+</div>
 
 <footer>
 <p>© 2026 QuickToolLab | Free Tools for Everyone</p>
 </footer>
 
-
 <script>
 
 function bmi(){
-
 let w=document.getElementById("weight").value
 let h=document.getElementById("height").value/100
-
 let result=w/(h*h)
-
 document.getElementById("bmiResult").innerText="BMI: "+result.toFixed(2)
-
 }
-
 
 function ageCalc(){
-
 let dob=new Date(document.getElementById("dob").value)
 let today=new Date()
-
 let age=today.getFullYear()-dob.getFullYear()
-
 document.getElementById("ageResult").innerText="Age: "+age+" years"
-
 }
-
 
 function percentage(){
-
 let total=document.getElementById("total").value
 let obtained=document.getElementById("obtained").value
-
 let percent=(obtained/total)*100
-
 document.getElementById("percentResult").innerText="Percentage: "+percent.toFixed(2)+"%"
-
 }
-
 
 function generatePassword(){
-
 let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#"
-
 let pass=""
-
 for(let i=0;i<10;i++){
-
 pass+=chars.charAt(Math.floor(Math.random()*chars.length))
-
 }
-
 document.getElementById("passwordResult").innerText=pass
-
 }
-
 
 function randomNumber(){
-
 let min=parseInt(document.getElementById("min").value)
-
 let max=parseInt(document.getElementById("max").value)
-
 let num=Math.floor(Math.random()*(max-min+1))+min
-
 document.getElementById("randomResult").innerText=num
+}
 
+function countWords(){
+let text=document.getElementById("textInput").value.trim()
+let words=text.split(/\s+/)
+let count=text?words.length:0
+document.getElementById("wordResult").innerText="Words: "+count
+}
+
+function countChars(){
+let text=document.getElementById("charInput").value
+document.getElementById("charResult").innerText="Characters: "+text.length
+}
+
+function convertTemp(){
+let c=document.getElementById("celsius").value
+let f=(c*9/5)+32
+document.getElementById("tempResult").innerText="Fahrenheit: "+f
+}
+
+function checkPalindrome(){
+let text=document.getElementById("palInput").value
+let reversed=text.split("").reverse().join("")
+if(text==reversed){
+document.getElementById("palResult").innerText="Yes, it is a palindrome"
+}else{
+document.getElementById("palResult").innerText="Not a palindrome"
+}
 }
 
 </script>
-function countWords(){
 
-let text=document.getElementById("textInput").value.trim()
-
-let words=text.split(/\s+/)
-
-let count=text?words.length:0
-
-document.getElementById("wordResult").innerText="Words: "+count
-
-}
 </body>
 </html>
-
