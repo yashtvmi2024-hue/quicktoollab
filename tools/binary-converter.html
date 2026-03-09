@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Binary Converter</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav><h1>QuickToolLab</h1></nav>
+
+<div class="container">
+
+<h2>Decimal to Binary</h2>
+
+<input id="n">
+
+<button onclick="convert()">Convert</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function convert(){
+
+let n=document.getElementById("n").value
+
+document.getElementById("result").innerText=Number(n).toString(2)
+
+}
+
+</script>
+
+</body>
+</html>
