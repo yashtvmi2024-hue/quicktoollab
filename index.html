@@ -181,6 +181,15 @@ color:#94a3b8;
 <div id="randomResult" class="result"></div>
 </div>
 
+<div class="tool">
+<h3>Word Counter</h3>
+
+<textarea id="textInput" placeholder="Enter text here"></textarea>
+
+<button onclick="countWords()">Count Words</button>
+
+<div id="wordResult" class="result"></div>
+</div>
 </div>
 
 </div>
@@ -259,6 +268,17 @@ document.getElementById("randomResult").innerText=num
 }
 
 </script>
+function countWords(){
 
+let text=document.getElementById("textInput").value.trim()
+
+let words=text.split(/\s+/)
+
+let count=text?words.length:0
+
+document.getElementById("wordResult").innerText="Words: "+count
+
+}
 </body>
 </html>
+
