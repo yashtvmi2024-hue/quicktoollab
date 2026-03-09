@@ -1,78 +1,128 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>QuickToolLab</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickToolLab - Free Online Tools</title>
 
 <style>
-body{
-font-family:Arial;
+
+*{
 margin:0;
-background:#f2f5f9;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
 }
 
 header{
-background:#2563eb;
-color:white;
-text-align:center;
 padding:20px;
+text-align:center;
+background:#020617;
+border-bottom:1px solid #1e293b;
+}
+
+header h1{
 font-size:28px;
-font-weight:bold;
+color:#38bdf8;
+}
+
+header p{
+color:#94a3b8;
+margin-top:5px;
 }
 
 .container{
-max-width:900px;
+max-width:1100px;
 margin:auto;
-padding:20px;
+padding:30px;
+}
+
+.tools{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
 }
 
 .tool{
-background:white;
+background:#1e293b;
 padding:20px;
-margin-bottom:20px;
 border-radius:10px;
-box-shadow:0 3px 10px rgba(0,0,0,0.08);
+transition:0.3s;
 }
 
-button{
-background:#2563eb;
-color:white;
+.tool:hover{
+transform:translateY(-5px);
+background:#334155;
+}
+
+.tool h3{
+margin-bottom:10px;
+color:#38bdf8;
+}
+
+.tool input{
+width:100%;
+padding:10px;
+margin-top:10px;
 border:none;
-padding:10px 15px;
+border-radius:5px;
+}
+
+.tool button{
+margin-top:10px;
+padding:10px;
+width:100%;
+border:none;
+background:#38bdf8;
+color:black;
+font-weight:bold;
 border-radius:5px;
 cursor:pointer;
 }
 
-button:hover{
-background:#1e40af;
-}
-
-input{
-padding:8px;
-margin:5px;
+.tool button:hover{
+background:#0ea5e9;
 }
 
 .result{
 margin-top:10px;
+color:#22c55e;
 font-weight:bold;
-color:#2563eb;
 }
+
+footer{
+text-align:center;
+padding:20px;
+margin-top:40px;
+color:#94a3b8;
+}
+
 </style>
 </head>
 
 <body>
 
-<header>QuickToolLab</header>
+<header>
+<h1>QuickToolLab</h1>
+<p>Simple Online Tools for Everyday Use</p>
+</header>
 
 <div class="container">
 
+<div class="tools">
+
+<!-- BMI CALCULATOR -->
+
 <div class="tool">
-<h2>BMI Calculator</h2>
+<h3>BMI Calculator</h3>
 
-<input id="weight" placeholder="Weight kg">
-<input id="height" placeholder="Height cm">
-
-<br><br>
+<input id="weight" placeholder="Weight (kg)">
+<input id="height" placeholder="Height (cm)">
 
 <button onclick="bmi()">Calculate</button>
 
@@ -80,41 +130,131 @@ color:#2563eb;
 </div>
 
 
+<!-- AGE CALCULATOR -->
+
 <div class="tool">
-<h2>Water Intake Calculator</h2>
+<h3>Age Calculator</h3>
 
-<input id="waterWeight" placeholder="Weight kg">
+<input type="date" id="dob">
 
-<br><br>
+<button onclick="ageCalc()">Calculate Age</button>
 
-<button onclick="water()">Calculate</button>
+<div id="ageResult" class="result"></div>
+</div>
 
-<div id="waterResult" class="result"></div>
 
+<!-- PERCENTAGE CALCULATOR -->
+
+<div class="tool">
+<h3>Percentage Calculator</h3>
+
+<input id="total" placeholder="Total Marks">
+<input id="obtained" placeholder="Obtained Marks">
+
+<button onclick="percentage()">Calculate</button>
+
+<div id="percentResult" class="result"></div>
+</div>
+
+
+<!-- PASSWORD GENERATOR -->
+
+<div class="tool">
+<h3>Password Generator</h3>
+
+<button onclick="generatePassword()">Generate Password</button>
+
+<div id="passwordResult" class="result"></div>
+</div>
+
+
+<!-- RANDOM NUMBER -->
+
+<div class="tool">
+<h3>Random Number Generator</h3>
+
+<input id="min" placeholder="Minimum">
+<input id="max" placeholder="Maximum">
+
+<button onclick="randomNumber()">Generate</button>
+
+<div id="randomResult" class="result"></div>
 </div>
 
 </div>
+
+</div>
+
+
+<footer>
+<p>© 2026 QuickToolLab | Free Tools for Everyone</p>
+</footer>
+
 
 <script>
 
 function bmi(){
 
-let w=document.getElementById("weight").value;
-let h=document.getElementById("height").value/100;
+let w=document.getElementById("weight").value
+let h=document.getElementById("height").value/100
 
-let result=w/(h*h);
+let result=w/(h*h)
 
-document.getElementById("bmiResult").innerHTML="BMI: "+result.toFixed(2);
+document.getElementById("bmiResult").innerText="BMI: "+result.toFixed(2)
 
 }
 
-function water(){
 
-let w=document.getElementById("waterWeight").value;
+function ageCalc(){
 
-let intake=(w*0.033).toFixed(2);
+let dob=new Date(document.getElementById("dob").value)
+let today=new Date()
 
-document.getElementById("waterResult").innerHTML="Drink about "+intake+" liters daily";
+let age=today.getFullYear()-dob.getFullYear()
+
+document.getElementById("ageResult").innerText="Age: "+age+" years"
+
+}
+
+
+function percentage(){
+
+let total=document.getElementById("total").value
+let obtained=document.getElementById("obtained").value
+
+let percent=(obtained/total)*100
+
+document.getElementById("percentResult").innerText="Percentage: "+percent.toFixed(2)+"%"
+
+}
+
+
+function generatePassword(){
+
+let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#"
+
+let pass=""
+
+for(let i=0;i<10;i++){
+
+pass+=chars.charAt(Math.floor(Math.random()*chars.length))
+
+}
+
+document.getElementById("passwordResult").innerText=pass
+
+}
+
+
+function randomNumber(){
+
+let min=parseInt(document.getElementById("min").value)
+
+let max=parseInt(document.getElementById("max").value)
+
+let num=Math.floor(Math.random()*(max-min+1))+min
+
+document.getElementById("randomResult").innerText=num
 
 }
 
