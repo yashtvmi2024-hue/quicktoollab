@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tip Calculator</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav><h1>QuickToolLab</h1></nav>
+
+<div class="container">
+
+<h2>Tip Calculator</h2>
+
+<input id="bill" placeholder="Bill amount">
+<input id="tip" placeholder="Tip %">
+
+<button onclick="calc()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function calc(){
+
+let b=document.getElementById("bill").value
+let t=document.getElementById("tip").value
+
+document.getElementById("result").innerText=b*t/100
+
+}
+
+</script>
+
+</body>
+</html>
