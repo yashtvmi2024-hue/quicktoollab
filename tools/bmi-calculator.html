@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>BMI Calculator | QuickToolLab</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav>
+<h1>QuickToolLab</h1>
+</nav>
+
+<div class="container">
+
+<h2>BMI Calculator</h2>
+
+<input id="w" placeholder="Weight kg">
+<input id="h" placeholder="Height cm">
+
+<button onclick="bmi()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function bmi(){
+let w=document.getElementById("w").value
+let h=document.getElementById("h").value/100
+document.getElementById("result").innerText=(w/(h*h)).toFixed(2)
+}
+
+</script>
+
+</body>
+</html>
