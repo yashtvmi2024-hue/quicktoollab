@@ -19,22 +19,65 @@ background:#0f172a;
 color:white;
 }
 
-header{
-padding:20px;
-text-align:center;
+/* NAVBAR */
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px 30px;
 background:#020617;
 border-bottom:1px solid #1e293b;
 }
 
+.logo{
+font-size:22px;
+font-weight:bold;
+color:#38bdf8;
+}
+
+.menu a{
+margin-left:20px;
+text-decoration:none;
+color:#cbd5f5;
+}
+
+.menu a:hover{
+color:#38bdf8;
+}
+
+/* HEADER */
+
+header{
+text-align:center;
+padding:40px 20px;
+}
+
 header h1{
-font-size:28px;
+font-size:34px;
 color:#38bdf8;
 }
 
 header p{
+margin-top:10px;
 color:#94a3b8;
-margin-top:5px;
 }
+
+/* SEARCH BAR */
+
+.search{
+max-width:500px;
+margin:20px auto;
+}
+
+.search input{
+width:100%;
+padding:12px;
+border-radius:6px;
+border:none;
+}
+
+/* CONTAINER */
 
 .container{
 max-width:1100px;
@@ -95,11 +138,14 @@ color:#22c55e;
 font-weight:bold;
 }
 
+/* FOOTER */
+
 footer{
 text-align:center;
-padding:20px;
+padding:25px;
 margin-top:40px;
 color:#94a3b8;
+border-top:1px solid #1e293b;
 }
 
 </style>
@@ -107,15 +153,42 @@ color:#94a3b8;
 
 <body>
 
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">QuickToolLab</div>
+
+<div class="menu">
+<a href="#">Home</a>
+<a href="#">Tools</a>
+<a href="#">About</a>
+<a href="#">Contact</a>
+</div>
+
+</nav>
+
+
+<!-- HEADER -->
+
 <header>
-<h1>QuickToolLab</h1>
-<p>Simple Online Tools for Everyday Use</p>
+
+<h1>Free Online Tools</h1>
+<p>Simple utilities for everyday tasks</p>
+
+<div class="search">
+<input type="text" id="searchBar" placeholder="Search tools..." onkeyup="searchTools()">
+</div>
+
 </header>
 
+
 <div class="container">
-<div class="tools">
+
+<div class="tools" id="toolContainer">
 
 <!-- BMI -->
+
 <div class="tool">
 <h3>BMI Calculator</h3>
 <input id="weight" placeholder="Weight (kg)">
@@ -125,6 +198,7 @@ color:#94a3b8;
 </div>
 
 <!-- AGE -->
+
 <div class="tool">
 <h3>Age Calculator</h3>
 <input type="date" id="dob">
@@ -133,6 +207,7 @@ color:#94a3b8;
 </div>
 
 <!-- PERCENTAGE -->
+
 <div class="tool">
 <h3>Percentage Calculator</h3>
 <input id="total" placeholder="Total Marks">
@@ -142,6 +217,7 @@ color:#94a3b8;
 </div>
 
 <!-- PASSWORD -->
+
 <div class="tool">
 <h3>Password Generator</h3>
 <button onclick="generatePassword()">Generate Password</button>
@@ -149,6 +225,7 @@ color:#94a3b8;
 </div>
 
 <!-- RANDOM NUMBER -->
+
 <div class="tool">
 <h3>Random Number Generator</h3>
 <input id="min" placeholder="Minimum">
@@ -158,6 +235,7 @@ color:#94a3b8;
 </div>
 
 <!-- WORD COUNTER -->
+
 <div class="tool">
 <h3>Word Counter</h3>
 <textarea id="textInput" placeholder="Enter text"></textarea>
@@ -166,6 +244,7 @@ color:#94a3b8;
 </div>
 
 <!-- CHARACTER COUNTER -->
+
 <div class="tool">
 <h3>Character Counter</h3>
 <textarea id="charInput" placeholder="Enter text"></textarea>
@@ -174,6 +253,7 @@ color:#94a3b8;
 </div>
 
 <!-- TEMPERATURE -->
+
 <div class="tool">
 <h3>Celsius → Fahrenheit</h3>
 <input id="celsius" placeholder="Enter Celsius">
@@ -182,6 +262,7 @@ color:#94a3b8;
 </div>
 
 <!-- PALINDROME -->
+
 <div class="tool">
 <h3>Palindrome Checker</h3>
 <input id="palInput" placeholder="Enter word">
@@ -192,9 +273,13 @@ color:#94a3b8;
 </div>
 </div>
 
+
 <footer>
-<p>© 2026 QuickToolLab | Free Tools for Everyone</p>
+
+<p>© 2026 QuickToolLab | Free Online Tools</p>
+
 </footer>
+
 
 <script>
 
@@ -261,6 +346,28 @@ document.getElementById("palResult").innerText="Yes, it is a palindrome"
 }else{
 document.getElementById("palResult").innerText="Not a palindrome"
 }
+}
+
+/* SEARCH TOOL FUNCTION */
+
+function searchTools(){
+
+let input=document.getElementById("searchBar").value.toLowerCase()
+
+let tools=document.getElementsByClassName("tool")
+
+for(let i=0;i<tools.length;i++){
+
+let title=tools[i].getElementsByTagName("h3")[0].innerText.toLowerCase()
+
+if(title.includes(input)){
+tools[i].style.display=""
+}else{
+tools[i].style.display="none"
+}
+
+}
+
 }
 
 </script>
