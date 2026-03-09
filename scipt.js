@@ -1,203 +1,46 @@
-const tools = [
-    { id: 'bmi', name: 'BMI Calculator', desc: 'Calculate your Body Mass Index to check your health status.' },
-    { id: 'protein', name: 'Protein Intake Calculator', desc: 'Find out how much protein you need daily based on your goals.' },
-    { id: 'water', name: 'Water Intake Calculator', desc: 'Calculate the optimal amount of water you should drink daily.' },
-    { id: 'prompt', name: 'AI Prompt Generator', desc: 'Generate creative prompts for Midjourney, DALL-E, or ChatGPT.' },
-    { id: 'caption', name: 'Instagram Caption Generator', desc: 'Get catchy captions for your next social media post.' },
-    { id: 'schedule', name: 'Study Schedule Generator', desc: 'Create a balanced study plan for your exams.' },
-    { id: 'movie', name: 'Random Movie Picker', desc: 'Can\'t decide what to watch? Let us pick a classic for you.' },
-    { id: 'workout', name: 'Workout Split Generator', desc: 'Generate a gym routine based on your available days.' },
-    { id: 'habit', name: 'Habit Tracker Generator', desc: 'Create a simple checklist to build better habits.' },
-    { id: 'yt-title', name: 'YouTube Title Generator', desc: 'Generate click-worthy titles for your next video.' }
-];
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:0;
+text-align:center;
+}
 
-const app = {
-    container: document.getElementById('app'),
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+font-size:24px;
+font-weight:bold;
+}
 
-    init: function() {
-        this.goHome();
-    },
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
 
-    goHome: function() {
-        let html = `
-            <div class="tools-grid">
-                ${tools.map(tool => `
-                    <div class="tool-card" onclick="app.loadTool('${tool.id}')">
-                        <h3>${tool.name}</h3>
-                        <p>${tool.desc}</p>
-                    </div>
-                `).join('')}
-            </div>
-        `;
-        this.container.innerHTML = html;
-    },
+.tool{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
 
-    loadTool: function(id) {
-        const tool = tools.find(t => t.id === id);
-        
-        // Define Inputs based on tool ID
-        let inputsHtml = '';
-        
-        switch(id) {
-            case 'bmi':
-                inputsHtml = `
-                    <div class="form-group"><label>Weight (kg)</label><input type="number" id="bmi-w" placeholder="e.g. 70"></div>
-                    <div class="form-group"><label>Height (cm)</label><input type="number" id="bmi-h" placeholder="e.g. 175"></div>
-                `;
-                break;
-            case 'protein':
-                inputsHtml = `
-                    <div class="form-group"><label>Weight (kg)</label><input type="number" id="prot-w" placeholder="e.g. 70"></div>
-                    <div class="form-group"><label>Activity Level</label>
-                        <select id="prot-act">
-                            <option value="1.2">Sedentary</option>
-                            <option value="1.4">Light Exercise</option>
-                            <option value="1.6">Moderate Exercise</option>
-                            <option value="1.8">Heavy Exercise</option>
-                        </select>
-                    </div>
-                `;
-                break;
-            case 'water':
-                inputsHtml = `
-                    <div class="form-group"><label>Weight (kg)</label><input type="number" id="water-w" placeholder="e.g. 70"></div>
-                `;
-                break;
-            case 'prompt':
-                inputsHtml = `
-                    <div class="form-group"><label>Subject</label><input type="text" id="prompt-sub" placeholder="e.g. Cyberpunk City"></div>
-                    <div class="form-group"><label>Style</label>
-                        <select id="prompt-style">
-                            <option value="Photorealistic">Photorealistic</option>
-                            <option value="Anime">Anime</option>
-                            <option value="Oil Painting">Oil Painting</option>
-                            <option value="3D Render">3D Render</option>
-                        </select>
-                    </div>
-                `;
-                break;
-            case 'caption':
-                inputsHtml = `
-                    <div class="form-group"><label>Vibe</label>
-                        <select id="cap-vibe">
-                            <option value="Funny">Funny</option>
-                            <option value="Motivational">Motivational</option>
-                            <option value="Short & Cool">Short & Cool</option>
-                            <option value="Question">Question</option>
-                        </select>
-                    </div>
-                `;
-                break;
-            case 'schedule':
-                inputsHtml = `
-                    <div class="form-group"><label>Start Time</label><input type="time" id="sched-start" value="09:00"></div>
-                    <div class="form-group"><label>Break Duration (mins)</label><input type="number" id="sched-break" value="15"></div>
-                `;
-                break;
-            case 'movie':
-                inputsHtml = `<p>Just click generate to find your next movie night pick!</p>`;
-                break;
-            case 'workout':
-                inputsHtml = `
-                    <div class="form-group"><label>Days per week</label>
-                        <select id="work-days">
-                            <option value="3">3 Days</option>
-                            <option value="4">4 Days</option>
-                            <option value="5">5 Days</option>
-                        </select>
-                    </div>
-                `;
-                break;
-            case 'habit':
-                inputsHtml = `
-                    <div class="form-group"><label>Goal</label><input type="text" id="habit-goal" placeholder="e.g. Read 10 pages"></div>
-                `;
-                break;
-            case 'yt-title':
-                inputsHtml = `
-                    <div class="form-group"><label>Topic</label><input type="text" id="yt-topic" placeholder="e.g. Coding Tutorial"></div>
-                `;
-                break;
-        }
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+}
 
-        const html = `
-            <a href="#" class="back-link" onclick="app.goHome()">← Back to Tools</a>
-            <div class="tool-container">
-                <div class="tool-header">
-                    <h1>${tool.name}</h1>
-                    <p>${tool.desc}</p>
-                </div>
-                <div class="tool-interface">
-                    ${inputsHtml}
-                    <button class="btn" onclick="app.runTool('${id}')">Generate Result</button>
-                </div>
-                <div id="result-area" class="result-box">
-                    <h4>Result:</h4>
-                    <div id="result-content"></div>
-                </div>
-            </div>
-        `;
-        this.container.innerHTML = html;
-    },
+button:hover{
+background:#1e40af;
+}
 
-    runTool: function(id) {
-        let logic = '';
-        switch(id) {
-            case 'bmi':
-                const w = parseFloat(document.getElementById('bmi-w').value);
-                const h = parseFloat(document.getElementById('bmi-h').value) / 100;
-                if(!w || !h) return alert("Please enter valid numbers.");
-                const bmi = (w / (h * h)).toFixed(1);
-                let status = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal Weight" : bmi < 30 ? "Overweight" : "Obese";
-                logic = `Your BMI is <strong>${bmi}</strong> (${status}).`;
-                break;
-            case 'protein':
-                const pW = parseFloat(document.getElementById('prot-w').value);
-                const pAct = parseFloat(document.getElementById('prot-act').value);
-                if(!pW) return alert("Please enter weight.");
-                const prot = Math.round(pW * pAct);
-                logic = `You should aim for <strong>${prot}g</strong> of protein daily.`;
-                break;
-            case 'water':
-                const wW = parseFloat(document.getElementById('water-w').value);
-                if(!wW) return alert("Please enter weight.");
-                const water = (wW * 0.033).toFixed(1);
-                logic = `You should drink approximately <strong>${water} Liters</strong> of water daily.`;
-                break;
-            case 'prompt':
-                const sub = document.getElementById('prompt-sub').value || "A mysterious scene";
-                const style = document.getElementById('prompt-style').value;
-                logic = `Prompt: <strong>${sub}, ${style} style, cinematic lighting, 8k resolution, highly detailed.</strong>`;
-                break;
-            case 'caption':
-                const vibe = document.getElementById('cap-vibe').value;
-                const captions = {
-                    'Funny': "I'm not lazy, I'm just on energy saving mode. 😴",
-                    'Motivational': "Dream big. Work hard. Stay humble. 💪",
-                    'Short & Cool': "Good vibes only. ✨",
-                    'Question': "What's your favorite way to relax? 👇"
-                };
-                logic = captions[vibe];
-                break;
-            case 'schedule':
-                const start = document.getElementById('sched-start').value;
-                const breakMins = parseInt(document.getElementById('sched-break').value);
-                let time = start.split(':').map(Number);
-                let output = "<strong>Study Plan:</strong><br>";
-                for(let i=0; i<4; i++) {
-                    output += `${time[0]}:${time[1].toString().padStart(2,'0')} - Study Session<br>`;
-                    time[1] += 50; // 50 min study
-                    if(time[1] >= 60) { time[0]++; time[1] -= 60; }
-                    output += `${time[0]}:${time[1].toString().padStart(2,'0')} - Break (${breakMins} mins)<br>`;
-                    time[1] += breakMins;
-                    if(time[1] >= 60) { time[0]++; time[1] -= 60; }
-                }
-                logic = output;
-                break;
-            case 'movie':
-                const movies = ["The Shawshank Redemption", "Inception", "Spirited Away", "The Dark Knight", "Pulp Fiction", "Interstellar", "The Grand Budapest Hotel"];
-                const random = movies[Math.floor(Math.random() * movies.length)];
-                logic = `Watch: <strong>${random}</strong>`;
-                break;
-            case 'workout':
-                const days = document.getElementById('work-days').
+input{
+padding:8px;
+margin:5px;
+}
