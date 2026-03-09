@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Square Calculator | QuickToolLab</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<nav>
+<h1>QuickToolLab</h1>
+</nav>
+
+<div class="container">
+
+<h2>Square Calculator</h2>
+
+<input id="num" placeholder="Enter number">
+
+<button onclick="square()">Calculate</button>
+
+<div id="result" class="result"></div>
+
+</div>
+
+<script>
+
+function square(){
+let n=document.getElementById("num").value
+document.getElementById("result").innerText=n*n
+}
+
+</script>
+
+</body>
+</html>
