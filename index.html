@@ -420,6 +420,102 @@ cards[i].style.display=title.includes(input)?"block":"none"
 
 }
 
+function percentage(){
+
+let a=document.getElementById("num1").value
+let b=document.getElementById("num2").value
+
+document.getElementById("percentageResult").innerText=(a/b*100).toFixed(2)+"%"
+
+}
+
+function age(){
+
+let birth=new Date(document.getElementById("birthdate").value)
+
+let today=new Date()
+
+let age=today.getFullYear()-birth.getFullYear()
+
+document.getElementById("ageResult").innerText=age+" years"
+
+}
+
+function wordcount(){
+
+let text=document.getElementById("text").value
+
+let words=text.trim().split(/\s+/).length
+
+document.getElementById("wordResult").innerText=words
+
+}
+
+function charcount(){
+
+let text=document.getElementById("charText").value
+
+document.getElementById("charResult").innerText=text.length
+
+}
+
+function temp(){
+
+let c=document.getElementById("cel").value
+
+document.getElementById("tempResult").innerText=(c*9/5+32)+" F"
+
+}
+
+function interest(){
+
+let p=document.getElementById("principal").value
+
+let r=document.getElementById("rate").value
+
+document.getElementById("interestResult").innerText=(p*r/100)
+
+}
+
+function namegen(){
+
+let names=["Alex","Nova","Pixel","Orion","Luna"]
+
+document.getElementById("nameResult").innerText=names[Math.floor(Math.random()*names.length)]
+
+}
+
+function binary(){
+
+let n=document.getElementById("decimal").value
+
+document.getElementById("binaryResult").innerText=Number(n).toString(2)
+
+}
+
+function tipcalc(){
+
+let b=document.getElementById("bill").value
+
+let t=document.getElementById("tip").value
+
+document.getElementById("tipResult").innerText=b*t/100
+
+}
+
+function quote(){
+
+let q=[
+"Stay hungry stay foolish",
+"Consistency beats talent",
+"Small steps every day",
+"Discipline creates freedom"
+]
+
+document.getElementById("quoteResult").innerText=q[Math.floor(Math.random()*q.length)]
+
+}
+  
 }
 
 </script>
@@ -427,4 +523,5 @@ cards[i].style.display=title.includes(input)?"block":"none"
 
 </body>
 </html>
+
 
