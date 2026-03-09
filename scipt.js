@@ -1,46 +1,40 @@
-body{
-font-family:Arial;
-background:#f4f6f8;
-margin:0;
-text-align:center;
+function bmi(){
+
+let w=document.getElementById("weight").value;
+let h=document.getElementById("height").value/100;
+
+let result=w/(h*h);
+
+document.getElementById("bmiResult").innerHTML=
+"BMI: "+result.toFixed(2);
+
 }
 
-header{
-background:#2563eb;
-color:white;
-padding:20px;
-font-size:24px;
-font-weight:bold;
+function water(){
+
+let w=document.getElementById("waterWeight").value;
+
+let intake=(w*0.033).toFixed(2);
+
+document.getElementById("waterResult").innerHTML=
+"Drink about "+intake+" liters daily";
+
 }
 
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
+function yt(){
 
-.tool{
-background:white;
-padding:20px;
-margin:15px;
-border-radius:10px;
-box-shadow:0 3px 8px rgba(0,0,0,0.1);
-}
+let topic=document.getElementById("topic").value;
 
-button{
-background:#2563eb;
-color:white;
-border:none;
-padding:10px 15px;
-border-radius:5px;
-cursor:pointer;
-}
+let titles=[
+"10 Things You Didn't Know About "+topic,
+"The Truth About "+topic,
+"Beginner Guide to "+topic,
+"I Tried "+topic+" For 7 Days",
+"Why Everyone Is Talking About "+topic
+];
 
-button:hover{
-background:#1e40af;
-}
+let random=titles[Math.floor(Math.random()*titles.length)];
 
-input{
-padding:8px;
-margin:5px;
+document.getElementById("ytResult").innerHTML=random;
+
 }
