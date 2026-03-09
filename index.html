@@ -33,12 +33,6 @@ color:#38bdf8;
 font-size:22px;
 }
 
-nav a{
-color:#cbd5f5;
-text-decoration:none;
-margin-left:20px;
-}
-
 /* HERO */
 
 .hero{
@@ -49,14 +43,27 @@ padding:60px 20px;
 .hero h2{
 font-size:40px;
 color:#38bdf8;
-margin-bottom:10px;
 }
 
 .hero p{
 color:#94a3b8;
 }
 
-/* TOOL GRID */
+/* SEARCH */
+
+.search{
+text-align:center;
+margin-bottom:30px;
+}
+
+.search input{
+padding:10px;
+width:260px;
+border:none;
+border-radius:6px;
+}
+
+/* GRID */
 
 .container{
 max-width:1100px;
@@ -74,17 +81,10 @@ gap:25px;
 background:#1e293b;
 padding:25px;
 border-radius:12px;
-transition:0.25s;
-}
-
-.card:hover{
-transform:translateY(-6px);
-background:#334155;
 }
 
 .card h3{
 color:#38bdf8;
-margin-top:0;
 }
 
 .card input{
@@ -109,10 +109,7 @@ font-weight:bold;
 .result{
 margin-top:10px;
 color:#22c55e;
-font-weight:bold;
 }
-
-/* FOOTER */
 
 footer{
 text-align:center;
@@ -132,12 +129,6 @@ color:#94a3b8;
 
 <h1>QuickToolLab</h1>
 
-<div>
-<a href="#">Home</a>
-<a href="#">Tools</a>
-<a href="#">About</a>
-</div>
-
 </nav>
 
 
@@ -145,59 +136,99 @@ color:#94a3b8;
 
 <h2>Free Online Tools</h2>
 
-<p>Simple utilities for everyday problems</p>
+<p>Simple utilities for everyday tasks</p>
 
 </section>
+
+
+<div class="search">
+
+<input id="searchInput" placeholder="Search tools..." onkeyup="searchTools()">
+
+</div>
 
 
 
 <div class="container">
 
-<div class="grid">
+<div class="grid" id="toolGrid">
 
-
-<!-- BMI TOOL -->
 
 <div class="card">
-
 <h3>BMI Calculator</h3>
-
-<input id="w" placeholder="Weight kg">
-
-<input id="h" placeholder="Height cm">
-
+<input id="w">
+<input id="h">
 <button onclick="bmi()">Calculate</button>
-
 <div id="bmi" class="result"></div>
-
 </div>
 
 
-
-<!-- RANDOM NUMBER -->
-
 <div class="card">
-
-<h3>Random Number Generator</h3>
-
+<h3>Random Number</h3>
 <button onclick="rand()">Generate</button>
-
 <div id="rand" class="result"></div>
-
 </div>
 
 
+<div class="card">
+<h3>Password Generator</h3>
+<button onclick="pass()">Generate</button>
+<div id="pass" class="result"></div>
+</div>
 
-<!-- PASSWORD -->
 
 <div class="card">
+<h3>Square Calculator</h3>
+<input id="sq">
+<button onclick="square()">Calculate</button>
+<div id="sqResult" class="result"></div>
+</div>
 
-<h3>Password Generator</h3>
 
-<button onclick="pass()">Generate</button>
+<div class="card">
+<h3>Cube Calculator</h3>
+<input id="cube">
+<button onclick="cube()">Calculate</button>
+<div id="cubeResult" class="result"></div>
+</div>
 
-<div id="pass" class="result"></div>
 
+<div class="card">
+<h3>Discount Calculator</h3>
+<input id="price">
+<input id="discount">
+<button onclick="discount()">Calculate</button>
+<div id="discountResult" class="result"></div>
+</div>
+
+
+<div class="card">
+<h3>Dice Roller</h3>
+<button onclick="dice()">Roll Dice</button>
+<div id="diceResult" class="result"></div>
+</div>
+
+
+<div class="card">
+<h3>Even or Odd Checker</h3>
+<input id="num">
+<button onclick="evenodd()">Check</button>
+<div id="evenoddResult" class="result"></div>
+</div>
+
+
+<div class="card">
+<h3>Minutes to Hours</h3>
+<input id="minutes">
+<button onclick="minutesToHours()">Convert</button>
+<div id="minutesResult" class="result"></div>
+</div>
+
+
+<div class="card">
+<h3>Random Color</h3>
+<button onclick="color()">Generate</button>
+<div id="colorResult" class="result"></div>
 </div>
 
 
@@ -217,38 +248,70 @@ color:#94a3b8;
 <script>
 
 function bmi(){
-
 let w=document.getElementById("w").value
-
 let h=document.getElementById("h").value/100
-
-let r=w/(h*h)
-
-document.getElementById("bmi").innerText="BMI: "+r.toFixed(2)
-
+document.getElementById("bmi").innerText=(w/(h*h)).toFixed(2)
 }
-
 
 function rand(){
-
 document.getElementById("rand").innerText=Math.floor(Math.random()*100)
-
 }
-
 
 function pass(){
-
 let chars="abcdefghijklmnopqrstuvwxyz0123456789"
-
 let p=""
-
-for(let i=0;i<10;i++){
-
-p+=chars[Math.floor(Math.random()*chars.length)]
-
+for(let i=0;i<10;i++){p+=chars[Math.floor(Math.random()*chars.length)]}
+document.getElementById("pass").innerText=p
 }
 
-document.getElementById("pass").innerText=p
+function square(){
+let n=document.getElementById("sq").value
+document.getElementById("sqResult").innerText=n*n
+}
+
+function cube(){
+let n=document.getElementById("cube").value
+document.getElementById("cubeResult").innerText=n*n*n
+}
+
+function discount(){
+let p=document.getElementById("price").value
+let d=document.getElementById("discount").value
+document.getElementById("discountResult").innerText=p-(p*d/100)
+}
+
+function dice(){
+document.getElementById("diceResult").innerText=Math.floor(Math.random()*6)+1
+}
+
+function evenodd(){
+let n=document.getElementById("num").value
+document.getElementById("evenoddResult").innerText=(n%2==0?"Even":"Odd")
+}
+
+function minutesToHours(){
+let m=document.getElementById("minutes").value
+document.getElementById("minutesResult").innerText=(m/60)+" hours"
+}
+
+function color(){
+let c="#"+Math.floor(Math.random()*16777215).toString(16)
+document.getElementById("colorResult").innerText=c
+}
+
+function searchTools(){
+
+let input=document.getElementById("searchInput").value.toLowerCase()
+
+let cards=document.getElementsByClassName("card")
+
+for(let i=0;i<cards.length;i++){
+
+let title=cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase()
+
+cards[i].style.display=title.includes(input)?"block":"none"
+
+}
 
 }
 
