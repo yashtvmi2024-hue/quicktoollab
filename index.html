@@ -1,298 +1,132 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickToolLab - Free Online Tools</title>
-    <style>
-        /* --- CSS STYLES --- */
-        :root {
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --radius: 12px;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-        }
+<title>QuickToolLab - Free Online Tools</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
-        
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+<style>
+body{
+font-family:Arial;
+background:#f4f6f8;
+margin:0;
+text-align:center;
+}
 
-        header { background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
-        .nav-btn { background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--text-muted); margin-left: 1rem; }
-        .nav-btn:hover { color: var(--primary); }
+header{
+background:#2563eb;
+color:white;
+padding:20px;
+font-size:24px;
+font-weight:bold;
+}
 
-        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; flex: 1; }
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
 
-        /* Home Grid */
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
-        .tool-card { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
-        .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--primary); }
-        .tool-card h3 { margin-bottom: 0.5rem; color: var(--text-main); }
-        .tool-card p { color: var(--text-muted); font-size: 0.9rem; }
+.tool{
+background:white;
+padding:20px;
+margin:15px;
+border-radius:10px;
+box-shadow:0 3px 8px rgba(0,0,0,0.1);
+}
 
-        /* Tool Page */
-        .tool-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); }
-        .tool-header { margin-bottom: 2rem; text-align: center; }
-        .tool-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-        .tool-header p { color: var(--text-muted); }
-        
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
-        .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
-        .form-group input:focus { outline: none; border-color: var(--primary); }
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:10px 15px;
+border-radius:5px;
+cursor:pointer;
+}
 
-        .btn { display: inline-block; width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-        .btn:hover { background: var(--primary-hover); }
+button:hover{
+background:#1e40af;
+}
 
-        .result-box { margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe; display: none; }
-        .result-box h4 { margin-bottom: 0.5rem; color: var(--primary); }
-
-        .back-link { display: inline-block; margin-bottom: 1rem; color: var(--text-muted); text-decoration: none; }
-        .back-link:hover { color: var(--primary); }
-
-        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: auto; }
-
-        @media (max-width: 600px) {
-            header { padding: 1rem; }
-            .tool-container { padding: 1.5rem; }
-        }
-    </style>
+input{
+padding:8px;
+margin:5px;
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <a href="#" class="logo" onclick="app.goHome()">QuickToolLab</a>
-        <nav>
-            <button class="nav-btn" onclick="app.goHome()">All Tools</button>
-        </nav>
-    </header>
+<header>QuickToolLab</header>
 
-    <main id="app">
-        <!-- Content will be loaded here -->
-    </main>
+<div class="container">
 
-    <footer>
-        <p>&copy; 2023 QuickToolLab. All tools are free to use.</p>
-    </footer>
+<div class="tool">
+<h2>BMI Calculator</h2>
+<input id="weight" placeholder="Weight (kg)">
+<input id="height" placeholder="Height (cm)">
+<br><br>
+<button onclick="bmi()">Calculate BMI</button>
+<p id="bmiResult"></p>
+</div>
 
-    <script>
-        // --- DATA ---
-        const tools = [
-            { id: 'bmi', name: 'BMI Calculator', desc: 'Calculate your Body Mass Index to check your health status.' },
-            { id: 'protein', name: 'Protein Intake Calculator', desc: 'Find out how much protein you need daily based on your goals.' },
-            { id: 'water', name: 'Water Intake Calculator', desc: 'Calculate the optimal amount of water you should drink daily.' },
-            { id: 'prompt', name: 'AI Prompt Generator', desc: 'Generate creative prompts for Midjourney, DALL-E, or ChatGPT.' },
-            { id: 'caption', name: 'Instagram Caption Generator', desc: 'Get catchy captions for your next social media post.' },
-            { id: 'schedule', name: 'Study Schedule Generator', desc: 'Create a balanced study plan for your exams.' },
-            { id: 'movie', name: 'Random Movie Picker', desc: 'Can\'t decide what to watch? Let us pick a classic for you.' },
-            { id: 'workout', name: 'Workout Split Generator', desc: 'Generate a gym routine based on your available days.' },
-            { id: 'habit', name: 'Habit Tracker Generator', desc: 'Create a simple checklist to build better habits.' },
-            { id: 'yt-title', name: 'YouTube Title Generator', desc: 'Generate click-worthy titles for your next video.' }
-        ];
+<div class="tool">
+<h2>Water Intake Calculator</h2>
+<input id="waterWeight" placeholder="Weight (kg)">
+<br><br>
+<button onclick="water()">Calculate Water Intake</button>
+<p id="waterResult"></p>
+</div>
 
-        // --- APP LOGIC ---
-        const app = {
-            container: document.getElementById('app'),
+<div class="tool">
+<h2>YouTube Title Generator</h2>
+<input id="topic" placeholder="Video Topic">
+<br><br>
+<button onclick="yt()">Generate Title</button>
+<p id="ytResult"></p>
+</div>
 
-            init: function() {
-                this.goHome();
-            },
+</div>
 
-            goHome: function() {
-                let html = `
-                    <div class="tools-grid">
-                        ${tools.map(tool => `
-                            <div class="tool-card" onclick="app.loadTool('${tool.id}')">
-                                <h3>${tool.name}</h3>
-                                <p>${tool.desc}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                this.container.innerHTML = html;
-            },
+<script>
 
-            loadTool: function(id) {
-                const tool = tools.find(t => t.id === id);
-                let inputsHtml = '';
-                
-                // Define Inputs based on tool ID
-                switch(id) {
-                    case 'bmi':
-                        inputsHtml = `
-                            <div class="form-group"><label>Weight (kg)</label><input type="number" id="bmi-w" placeholder="e.g. 70"></div>
-                            <div class="form-group"><label>Height (cm)</label><input type="number" id="bmi-h" placeholder="e.g. 175"></div>
-                        `;
-                        break;
-                    case 'protein':
-                        inputsHtml = `
-                            <div class="form-group"><label>Weight (kg)</label><input type="number" id="prot-w" placeholder="e.g. 70"></div>
-                            <div class="form-group"><label>Activity Level</label>
-                                <select id="prot-act">
-                                    <option value="1.2">Sedentary</option>
-                                    <option value="1.4">Light Exercise</option>
-                                    <option value="1.6">Moderate Exercise</option>
-                                    <option value="1.8">Heavy Exercise</option>
-                                </select>
-                            </div>
-                        `;
-                        break;
-                    case 'water':
-                        inputsHtml = `
-                            <div class="form-group"><label>Weight (kg)</label><input type="number" id="water-w" placeholder="e.g. 70"></div>
-                        `;
-                        break;
-                    case 'prompt':
-                        inputsHtml = `
-                            <div class="form-group"><label>Subject</label><input type="text" id="prompt-sub" placeholder="e.g. Cyberpunk City"></div>
-                            <div class="form-group"><label>Style</label>
-                                <select id="prompt-style">
-                                    <option value="Photorealistic">Photorealistic</option>
-                                    <option value="Anime">Anime</option>
-                                    <option value="Oil Painting">Oil Painting</option>
-                                    <option value="3D Render">3D Render</option>
-                                </select>
-                            </div>
-                        `;
-                        break;
-                    case 'caption':
-                        inputsHtml = `
-                            <div class="form-group"><label>Vibe</label>
-                                <select id="cap-vibe">
-                                    <option value="Funny">Funny</option>
-                                    <option value="Motivational">Motivational</option>
-                                    <option value="Short & Cool">Short & Cool</option>
-                                    <option value="Question">Question</option>
-                                </select>
-                            </div>
-                        `;
-                        break;
-                    case 'schedule':
-                        inputsHtml = `
-                            <div class="form-group"><label>Start Time</label><input type="time" id="sched-start" value="09:00"></div>
-                            <div class="form-group"><label>Break Duration (mins)</label><input type="number" id="sched-break" value="15"></div>
-                        `;
-                        break;
-                    case 'movie':
-                        inputsHtml = `<p>Just click generate to find your next movie night pick!</p>`;
-                        break;
-                    case 'workout':
-                        inputsHtml = `
-                            <div class="form-group"><label>Days per week</label>
-                                <select id="work-days">
-                                    <option value="3">3 Days</option>
-                                    <option value="4">4 Days</option>
-                                    <option value="5">5 Days</option>
-                                </select>
-                            </div>
-                        `;
-                        break;
-                    case 'habit':
-                        inputsHtml = `
-                            <div class="form-group"><label>Goal</label><input type="text" id="habit-goal" placeholder="e.g. Read 10 pages"></div>
-                        `;
-                        break;
-                    case 'yt-title':
-                        inputsHtml = `
-                            <div class="form-group"><label>Topic</label><input type="text" id="yt-topic" placeholder="e.g. Coding Tutorial"></div>
-                        `;
-                        break;
-                }
+function bmi(){
+let w=document.getElementById("weight").value;
+let h=document.getElementById("height").value/100;
 
-                const html = `
-                    <a href="#" class="back-link" onclick="app.goHome()">← Back to Tools</a>
-                    <div class="tool-container">
-                        <div class="tool-header">
-                            <h1>${tool.name}</h1>
-                            <p>${tool.desc}</p>
-                        </div>
-                        <div class="tool-interface">
-                            ${inputsHtml}
-                            <button class="btn" onclick="app.runTool('${id}')">Generate Result</button>
-                        </div>
-                        <div id="result-area" class="result-box">
-                            <h4>Result:</h4>
-                            <div id="result-content"></div>
-                        </div>
-                    </div>
-                `;
-                this.container.innerHTML = html;
-            },
+let result=w/(h*h);
 
-            runTool: function(id) {
-                let logic = '';
-                switch(id) {
-                    case 'bmi':
-                        const w = parseFloat(document.getElementById('bmi-w').value);
-                        const h = parseFloat(document.getElementById('bmi-h').value) / 100;
-                        if(!w || !h) return alert("Please enter valid numbers.");
-                        const bmi = (w / (h * h)).toFixed(1);
-                        let status = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal Weight" : bmi < 30 ? "Overweight" : "Obese";
-                        logic = `Your BMI is <strong>${bmi}</strong> (${status}).`;
-                        break;
-                    case 'protein':
-                        const pW = parseFloat(document.getElementById('prot-w').value);
-                        const pAct = parseFloat(document.getElementById('prot-act').value);
-                        if(!pW) return alert("Please enter weight.");
-                        const prot = Math.round(pW * pAct);
-                        logic = `You should aim for <strong>${prot}g</strong> of protein daily.`;
-                        break;
-                    case 'water':
-                        const wW = parseFloat(document.getElementById('water-w').value);
-                        if(!wW) return alert("Please enter weight.");
-                        const water = (wW * 0.033).toFixed(1);
-                        logic = `You should drink approximately <strong>${water} Liters</strong> of water daily.`;
-                        break;
-                    case 'prompt':
-                        const sub = document.getElementById('prompt-sub').value || "A mysterious scene";
-                        const style = document.getElementById('prompt-style').value;
-                        logic = `Prompt: <strong>${sub}, ${style} style, cinematic lighting, 8k resolution, highly detailed.</strong>`;
-                        break;
-                    case 'caption':
-                        const vibe = document.getElementById('cap-vibe').value;
-                        const captions = {
-                            'Funny': "I'm not lazy, I'm just on energy saving mode. 😴",
-                            'Motivational': "Dream big. Work hard. Stay humble. 💪",
-                            'Short & Cool': "Good vibes only. ✨",
-                            'Question': "What's your favorite way to relax? 👇"
-                        };
-                        logic = captions[vibe];
-                        break;
-                    case 'schedule':
-                        const start = document.getElementById('sched-start').value;
-                        const breakMins = parseInt(document.getElementById('sched-break').value);
-                        let time = start.split(':').map(Number);
-                        let output = "<strong>Study Plan:</strong><br>";
-                        for(let i=0; i<4; i++) {
-                            output += `${time[0]}:${time[1].toString().padStart(2,'0')} - Study Session<br>`;
-                            time[1] += 50; // 50 min study
-                            if(time[1] >= 60) { time[0]++; time[1] -= 60; }
-                            output += `${time[0]}:${time[1].toString().padStart(2,'0')} - Break (${breakMins} mins)<br>`;
-                            time[1] += breakMins;
-                            if(time[1] >= 60) { time[0]++; time[1] -= 60; }
-                        }
-                        logic = output;
-                        break;
-                    case 'movie':
-                        const movies = ["The Shawshank Redemption", "Inception", "Spirited Away", "The Dark Knight", "Pulp Fiction", "Interstellar", "The Grand Budapest Hotel"];
-                        const random = movies[Math.floor(Math.random() * movies.length)];
-                        logic = `Watch: <strong>${random}</strong>`;
-                        break;
-                    case 'workout':
-                        const days = document.getElementById('work-days').value;
-                        let routine = "";
-                        if(days == 3) routine = "Day 1: Chest/Triceps<br>Day 2: Rest<br>Day 3: Back/Biceps<br>Day 4: Rest<br>Day 5: Legs/Shoulders";
-                        else if(days == 4) routine = "Day 1: Upper Body<br>Day 2: Lower Body<br>Day 3: Rest<br>Day 4: Upper Body<br>Day 5: Lower Body";
-                        else routine = "Day 1: Chest<br>Day 2: Back<br>Day 3: Legs<br>Day 4: Shoulders<br>Day 5: Arms";
-                        logic = `<strong>Split:</strong><br>${routine}`;
-                        break;
-                    case 'habit':
-                        const goal = document.getElementById('habit-goal').value || "New Habit";
-                        logic = `
-                            <strong>Tracker for: ${goal}</strong><br><br>
+document.getElementById("bmiResult").innerHTML=
+"BMI: "+result.toFixed(2);
+}
+
+function water(){
+let w=document.getElementById("waterWeight").value;
+
+let intake=(w*0.033).toFixed(2);
+
+document.getElementById("waterResult").innerHTML=
+"Drink about "+intake+" liters daily";
+}
+
+function yt(){
+
+let topic=document.getElementById("topic").value;
+
+let titles=[
+"10 Things You Didn't Know About "+topic,
+"The Truth About "+topic,
+"Beginner Guide to "+topic,
+"I Tried "+topic+" For 7 Days",
+"Why Everyone Is Talking About "+topic
+];
+
+let random=titles[Math.floor(Math.random()*titles.length)];
+
+document.getElementById("ytResult").innerHTML=random;
+
+}
+
+</script>
+
+</body>
+</html>
