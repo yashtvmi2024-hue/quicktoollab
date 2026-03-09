@@ -1,493 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickToolLab - Free Online Tools</title>
+<title>QuickToolLab</title>
 
-<style>
+<link rel="stylesheet" href="style.css">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, Helvetica, sans-serif;
-}
-
-body{
-background:#0f172a;
-color:white;
-}
-
-/* NAVBAR */
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px 30px;
-background:#020617;
-border-bottom:1px solid #1e293b;
-}
-
-.logo{
-font-size:22px;
-font-weight:bold;
-color:#38bdf8;
-}
-
-.menu a{
-margin-left:20px;
-text-decoration:none;
-color:#cbd5f5;
-}
-
-.menu a:hover{
-color:#38bdf8;
-}
-
-/* HEADER */
-
-header{
-text-align:center;
-padding:40px 20px;
-}
-
-header h1{
-font-size:34px;
-color:#38bdf8;
-}
-
-header p{
-margin-top:10px;
-color:#94a3b8;
-}
-
-/* SEARCH BAR */
-
-.search{
-max-width:500px;
-margin:20px auto;
-}
-
-.search input{
-width:100%;
-padding:12px;
-border-radius:6px;
-border:none;
-}
-
-/* CONTAINER */
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:30px;
-}
-
-.tools{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.tool{
-background:#1e293b;
-padding:20px;
-border-radius:10px;
-transition:0.3s;
-}
-
-.tool:hover{
-transform:translateY(-5px);
-background:#334155;
-}
-
-.tool h3{
-margin-bottom:10px;
-color:#38bdf8;
-}
-
-.tool input, textarea{
-width:100%;
-padding:10px;
-margin-top:10px;
-border:none;
-border-radius:5px;
-}
-
-.tool button{
-margin-top:10px;
-padding:10px;
-width:100%;
-border:none;
-background:#38bdf8;
-color:black;
-font-weight:bold;
-border-radius:5px;
-cursor:pointer;
-}
-
-.tool button:hover{
-background:#0ea5e9;
-}
-
-.result{
-margin-top:10px;
-color:#22c55e;
-font-weight:bold;
-}
-
-/* FOOTER */
-
-footer{
-text-align:center;
-padding:25px;
-margin-top:40px;
-color:#94a3b8;
-border-top:1px solid #1e293b;
-}
-
-</style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
-<nav>
-
-<div class="logo">QuickToolLab</div>
-
-<div class="menu">
-<a href="#">Home</a>
-<a href="#">Tools</a>
-<a href="#">About</a>
-<a href="#">Contact</a>
-</div>
-
-</nav>
-
-
-<!-- HEADER -->
-
 <header>
 
-<h1>Free Online Tools</h1>
-<p>Simple utilities for everyday tasks</p>
+<h1>QuickToolLab</h1>
+<p>Free Online Tools</p>
 
-<div class="search">
-<input type="text" id="searchBar" placeholder="Search tools..." onkeyup="searchTools()">
-</div>
+<input type="text" id="search" placeholder="Search tools..." onkeyup="searchTools()">
 
 </header>
 
 
-<div class="container">
+<div class="container" id="toolContainer">
 
-<div class="tools" id="toolContainer">
-
-<!-- BMI -->
 
 <div class="tool">
 <h3>BMI Calculator</h3>
+
 <input id="weight" placeholder="Weight (kg)">
 <input id="height" placeholder="Height (cm)">
+
 <button onclick="bmi()">Calculate</button>
+
 <div id="bmiResult" class="result"></div>
+
 </div>
 
-<!-- AGE -->
 
 <div class="tool">
+
 <h3>Age Calculator</h3>
+
 <input type="date" id="dob">
-<button onclick="ageCalc()">Calculate Age</button>
+
+<button onclick="ageCalc()">Calculate</button>
+
 <div id="ageResult" class="result"></div>
+
 </div>
 
-<!-- PERCENTAGE -->
 
 <div class="tool">
+
 <h3>Percentage Calculator</h3>
+
 <input id="total" placeholder="Total Marks">
+
 <input id="obtained" placeholder="Obtained Marks">
+
 <button onclick="percentage()">Calculate</button>
+
 <div id="percentResult" class="result"></div>
+
 </div>
 
-<!-- PASSWORD -->
 
 <div class="tool">
+
 <h3>Password Generator</h3>
+
 <button onclick="generatePassword()">Generate Password</button>
+
 <div id="passwordResult" class="result"></div>
+
 </div>
 
-<!-- RANDOM NUMBER -->
 
-<div class="tool">
-<h3>Random Number Generator</h3>
-<input id="min" placeholder="Minimum">
-<input id="max" placeholder="Maximum">
-<button onclick="randomNumber()">Generate</button>
-<div id="randomResult" class="result"></div>
 </div>
-
-<!-- WORD COUNTER -->
-
-<div class="tool">
-<h3>Word Counter</h3>
-<textarea id="textInput" placeholder="Enter text"></textarea>
-<button onclick="countWords()">Count Words</button>
-<div id="wordResult" class="result"></div>
-</div>
-
-<!-- CHARACTER COUNTER -->
-
-<div class="tool">
-<h3>Character Counter</h3>
-<textarea id="charInput" placeholder="Enter text"></textarea>
-<button onclick="countChars()">Count Characters</button>
-<div id="charResult" class="result"></div>
-</div>
-
-<!-- TEMPERATURE -->
-
-<div class="tool">
-<h3>Celsius → Fahrenheit</h3>
-<input id="celsius" placeholder="Enter Celsius">
-<button onclick="convertTemp()">Convert</button>
-<div id="tempResult" class="result"></div>
-</div>
-
-<!-- PALINDROME -->
-
-<div class="tool">
-<h3>Palindrome Checker</h3>
-<input id="palInput" placeholder="Enter word">
-<button onclick="checkPalindrome()">Check</button>
-<div id="palResult" class="result"></div>
-</div>
-
-  <div class="tool">
-<h3>Square Calculator</h3>
-<input id="squareInput" placeholder="Enter number">
-<button onclick="square()">Calculate</button>
-<div id="squareResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Cube Calculator</h3>
-<input id="cubeInput" placeholder="Enter number">
-<button onclick="cube()">Calculate</button>
-<div id="cubeResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Discount Calculator</h3>
-<input id="price">
-<input id="discount">
-<button onclick="discountCalc()">Calculate</button>
-<div id="discountResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Binary Converter</h3>
-<input id="binaryInput">
-<button onclick="toBinary()">Convert</button>
-<div id="binaryResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Random Color Generator</h3>
-<button onclick="randomColor()">Generate</button>
-<div id="colorResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Username Generator</h3>
-<button onclick="usernameGen()">Generate</button>
-<div id="usernameResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Even or Odd Checker</h3>
-<input id="oddInput">
-<button onclick="oddCheck()">Check</button>
-<div id="oddResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Minutes to Hours</h3>
-<input id="minutesInput">
-<button onclick="minutesToHours()">Convert</button>
-<div id="minutesResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Dice Roller</h3>
-<button onclick="dice()">Roll</button>
-<div id="diceResult" class="result"></div>
-</div>
-
-<div class="tool">
-<h3>Random Number 1-100</h3>
-<button onclick="random100()">Generate</button>
-<div id="rand100Result" class="result"></div>
-</div>
-  
-</div>
-</div>
-
 
 <footer>
 
-<p>© 2026 QuickToolLab | Free Online Tools</p>
+<p>© 2026 QuickToolLab</p>
 
 </footer>
 
-
-<script>
-
-function bmi(){
-let w=document.getElementById("weight").value
-let h=document.getElementById("height").value/100
-let result=w/(h*h)
-document.getElementById("bmiResult").innerText="BMI: "+result.toFixed(2)
-}
-
-function ageCalc(){
-let dob=new Date(document.getElementById("dob").value)
-let today=new Date()
-let age=today.getFullYear()-dob.getFullYear()
-document.getElementById("ageResult").innerText="Age: "+age+" years"
-}
-
-function percentage(){
-let total=document.getElementById("total").value
-let obtained=document.getElementById("obtained").value
-let percent=(obtained/total)*100
-document.getElementById("percentResult").innerText="Percentage: "+percent.toFixed(2)+"%"
-}
-
-function generatePassword(){
-let chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#"
-let pass=""
-for(let i=0;i<10;i++){
-pass+=chars.charAt(Math.floor(Math.random()*chars.length))
-}
-document.getElementById("passwordResult").innerText=pass
-}
-
-function randomNumber(){
-let min=parseInt(document.getElementById("min").value)
-let max=parseInt(document.getElementById("max").value)
-let num=Math.floor(Math.random()*(max-min+1))+min
-document.getElementById("randomResult").innerText=num
-}
-
-function countWords(){
-let text=document.getElementById("textInput").value.trim()
-let words=text.split(/\s+/)
-let count=text?words.length:0
-document.getElementById("wordResult").innerText="Words: "+count
-}
-
-function countChars(){
-let text=document.getElementById("charInput").value
-document.getElementById("charResult").innerText="Characters: "+text.length
-}
-
-function convertTemp(){
-let c=document.getElementById("celsius").value
-let f=(c*9/5)+32
-document.getElementById("tempResult").innerText="Fahrenheit: "+f
-}
-
-function checkPalindrome(){
-let text=document.getElementById("palInput").value
-let reversed=text.split("").reverse().join("")
-if(text==reversed){
-document.getElementById("palResult").innerText="Yes, it is a palindrome"
-}else{
-document.getElementById("palResult").innerText="Not a palindrome"
-}
-}
-
-/* SEARCH TOOL FUNCTION */
-
-function searchTools(){
-
-let input=document.getElementById("searchBar").value.toLowerCase()
-
-let tools=document.getElementsByClassName("tool")
-
-for(let i=0;i<tools.length;i++){
-
-let title=tools[i].getElementsByTagName("h3")[0].innerText.toLowerCase()
-
-if(title.includes(input)){
-tools[i].style.display=""
-}else{
-tools[i].style.display="none"
-}
-
-function square(){
-let n=document.getElementById("squareInput").value
-document.getElementById("squareResult").innerText=n*n
-}
-
-function cube(){
-let n=document.getElementById("cubeInput").value
-document.getElementById("cubeResult").innerText=n*n*n
-}
-
-function discountCalc(){
-let p=document.getElementById("price").value
-let d=document.getElementById("discount").value
-document.getElementById("discountResult").innerText=p-(p*d/100)
-}
-
-function toBinary(){
-let n=document.getElementById("binaryInput").value
-document.getElementById("binaryResult").innerText=Number(n).toString(2)
-}
-
-function randomColor(){
-let color="#"+Math.floor(Math.random()*16777215).toString(16)
-document.getElementById("colorResult").innerText=color
-}
-
-function usernameGen(){
-let names=["nova","shadow","pixel","astro","lunar"]
-let num=Math.floor(Math.random()*999)
-document.getElementById("usernameResult").innerText=names[Math.floor(Math.random()*names.length)]+num
-}
-
-function oddCheck(){
-let n=document.getElementById("oddInput").value
-document.getElementById("oddResult").innerText=(n%2==0?"Even":"Odd")
-}
-
-function minutesToHours(){
-let m=document.getElementById("minutesInput").value
-document.getElementById("minutesResult").innerText=(m/60)+" hours"
-}
-
-function dice(){
-document.getElementById("diceResult").innerText=Math.floor(Math.random()*6)+1
-}
-
-function random100(){
-document.getElementById("rand100Result").innerText=Math.floor(Math.random()*100)+1
-}  
-}
-
-}
-
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
-
