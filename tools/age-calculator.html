@@ -1,39 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Age Calculator | QuickToolLab</title>
-<link rel="stylesheet" href="../style.css">
+
+<style>
+
+body{
+font-family:Arial, Helvetica, sans-serif;
+background:linear-gradient(135deg,#4facfe,#00f2fe);
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:white;
+padding:35px;
+border-radius:12px;
+width:380px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+
+h1{
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-bottom:15px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#4facfe;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#3793ff;
+}
+
+.result{
+margin-top:20px;
+text-align:left;
+font-size:15px;
+}
+
+.box{
+background:#f3f3f3;
+padding:8px;
+margin-bottom:6px;
+border-radius:5px;
+}
+
+.back{
+display:block;
+margin-bottom:15px;
+color:#4facfe;
+text-decoration:none;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<nav>
-<h1>QuickToolLab</h1>
-</nav>
-
 <div class="container">
 
-<h2>Age Calculator</h2>
+<a class="back" href="../index.html">⬅ Back to Tools</a>
+
+<h1>Age Calculator</h1>
 
 <input type="date" id="birthdate">
 
-<button onclick="age()">Calculate Age</button>
+<button onclick="calculateAge()">Calculate Age</button>
 
-<div id="result" class="result"></div>
+<div class="result" id="result"></div>
 
 </div>
 
+
 <script>
 
-function age(){
+function calculateAge(){
 
-let birth=new Date(document.getElementById("birthdate").value)
+let dob = document.getElementById("birthdate").value;
 
-let today=new Date()
+if(!dob){
+alert("Please select birth date");
+return;
+}
 
-let age=today.getFullYear()-birth.getFullYear()
+let birthDate = new Date(dob);
+let today = new Date();
 
-document.getElementById("result").innerText=age+" years"
+let years = today.getFullYear() - birthDate.getFullYear();
+let months = today.getMonth() - birthDate.getMonth();
+let days = today.getDate() - birthDate.getDate();
+
+if(days < 0){
+months--;
+days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+}
+
+if(months < 0){
+years--;
+months += 12;
+}
+
+let diff = today - birthDate;
+
+let totalDays = Math.floor(diff/(1000*60*60*24));
+let totalHours = Math.floor(diff/(1000*60*60));
+let totalMinutes = Math.floor(diff/(1000*60));
+let totalSeconds = Math.floor(diff/1000);
+
+let nextBirthday = new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate());
+
+if(nextBirthday < today){
+nextBirthday.setFullYear(today.getFullYear()+1);
+}
+
+let daysLeft = Math.ceil((nextBirthday - today)/(1000*60*60*24));
+
+document.getElementById("result").innerHTML = `
+
+<div class="box">🎂 Age: <b>${years} Years ${months} Months ${days} Days</b></div>
+
+<div class="box">📅 Total Days Lived: <b>${totalDays}</b></div>
+
+<div class="box">⏰ Total Hours: <b>${totalHours}</b></div>
+
+<div class="box">⏱ Total Minutes: <b>${totalMinutes}</b></div>
+
+<div class="box">⌛ Total Seconds: <b>${totalSeconds}</b></div>
+
+<div class="box">🎉 Next Birthday In: <b>${daysLeft} Days</b></div>
+
+`;
 
 }
 
