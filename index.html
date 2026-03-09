@@ -7,130 +7,15 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-
-body{
-margin:0;
-font-family:Arial;
-background:#0f172a;
-color:white;
-}
-
-/* NAVBAR */
-
-nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:18px 40px;
-background:#020617;
-border-bottom:1px solid #1e293b;
-}
-
-nav h1{
-margin:0;
-color:#38bdf8;
-font-size:22px;
-}
-
-/* HERO */
-
-.hero{
-text-align:center;
-padding:60px 20px;
-}
-
-.hero h2{
-font-size:40px;
-color:#38bdf8;
-}
-
-.hero p{
-color:#94a3b8;
-}
-
-/* SEARCH */
-
-.search{
-text-align:center;
-margin-bottom:30px;
-}
-
-.search input{
-padding:10px;
-width:260px;
-border:none;
-border-radius:6px;
-}
-
-/* GRID */
-
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.card{
-background:#1e293b;
-padding:25px;
-border-radius:12px;
-}
-
-.card h3{
-color:#38bdf8;
-}
-
-.card input{
-width:100%;
-padding:10px;
-margin-top:10px;
-border:none;
-border-radius:5px;
-}
-
-.card button{
-width:100%;
-margin-top:10px;
-padding:10px;
-background:#38bdf8;
-border:none;
-border-radius:6px;
-cursor:pointer;
-font-weight:bold;
-}
-
-.result{
-margin-top:10px;
-color:#22c55e;
-}
-
-footer{
-text-align:center;
-padding:30px;
-color:#94a3b8;
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
-
 <body>
 
-
 <nav>
-
 <h1>QuickToolLab</h1>
-
 </nav>
-
 
 <section class="hero">
 
@@ -141,387 +26,44 @@ color:#94a3b8;
 </section>
 
 
-<div class="search">
-
-<input id="searchInput" placeholder="Search tools..." onkeyup="searchTools()">
-
-</div>
-
-
-
 <div class="container">
 
-<div class="grid" id="toolGrid">
-
+<div class="grid">
 
 <div class="card">
 <h3>BMI Calculator</h3>
-<input id="w">
-<input id="h">
-<button onclick="bmi()">Calculate</button>
-<div id="bmi" class="result"></div>
+<a href="tools/bmi-calculator.html">Open Tool</a>
 </div>
-
 
 <div class="card">
 <h3>Random Number</h3>
-<button onclick="rand()">Generate</button>
-<div id="rand" class="result"></div>
+<a href="tools/random-number.html">Open Tool</a>
 </div>
-
 
 <div class="card">
 <h3>Password Generator</h3>
-<button onclick="pass()">Generate</button>
-<div id="pass" class="result"></div>
+<a href="tools/password-generator.html">Open Tool</a>
 </div>
-
 
 <div class="card">
 <h3>Square Calculator</h3>
-<input id="sq">
-<button onclick="square()">Calculate</button>
-<div id="sqResult" class="result"></div>
+<a href="tools/square-calculator.html">Open Tool</a>
 </div>
-
-
-<div class="card">
-<h3>Cube Calculator</h3>
-<input id="cube">
-<button onclick="cube()">Calculate</button>
-<div id="cubeResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Discount Calculator</h3>
-<input id="price">
-<input id="discount">
-<button onclick="discount()">Calculate</button>
-<div id="discountResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Dice Roller</h3>
-<button onclick="dice()">Roll Dice</button>
-<div id="diceResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Even or Odd Checker</h3>
-<input id="num">
-<button onclick="evenodd()">Check</button>
-<div id="evenoddResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Minutes to Hours</h3>
-<input id="minutes">
-<button onclick="minutesToHours()">Convert</button>
-<div id="minutesResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Random Color</h3>
-<button onclick="color()">Generate</button>
-<div id="colorResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Percentage Calculator</h3>
-
-<input id="num1">
-<input id="num2">
-
-<button onclick="percentage()">Calculate</button>
-
-<div id="percentageResult" class="result"></div>
-</div>
-
 
 <div class="card">
 <h3>Age Calculator</h3>
-
-<input type="date" id="birthdate">
-
-<button onclick="age()">Calculate</button>
-
-<div id="ageResult" class="result"></div>
+<a href="tools/age-calculator.html">Open Tool</a>
 </div>
 
-
-<div class="card">
-<h3>Word Counter</h3>
-
-<input id="text">
-
-<button onclick="wordcount()">Count</button>
-
-<div id="wordResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Character Counter</h3>
-
-<input id="charText">
-
-<button onclick="charcount()">Count</button>
-
-<div id="charResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Temperature Converter</h3>
-
-<input id="cel">
-
-<button onclick="temp()">Convert to F</button>
-
-<div id="tempResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Loan Interest Calculator</h3>
-
-<input id="principal">
-<input id="rate">
-
-<button onclick="interest()">Calculate</button>
-
-<div id="interestResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Random Name Generator</h3>
-
-<button onclick="namegen()">Generate</button>
-
-<div id="nameResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Binary Converter</h3>
-
-<input id="decimal">
-
-<button onclick="binary()">Convert</button>
-
-<div id="binaryResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Tip Calculator</h3>
-
-<input id="bill">
-<input id="tip">
-
-<button onclick="tipcalc()">Calculate</button>
-
-<div id="tipResult" class="result"></div>
-</div>
-
-
-<div class="card">
-<h3>Random Quote</h3>
-
-<button onclick="quote()">Generate</button>
-
-<div id="quoteResult" class="result"></div>
-</div> 
 </div>
 
 </div>
 
 
 <footer>
-
 <p>© 2026 QuickToolLab</p>
-
 </footer>
 
-
-
-<script>
-
-function bmi(){
-let w=document.getElementById("w").value
-let h=document.getElementById("h").value/100
-document.getElementById("bmi").innerText=(w/(h*h)).toFixed(2)
-}
-
-function rand(){
-document.getElementById("rand").innerText=Math.floor(Math.random()*100)
-}
-
-function pass(){
-let chars="abcdefghijklmnopqrstuvwxyz0123456789"
-let p=""
-for(let i=0;i<10;i++){p+=chars[Math.floor(Math.random()*chars.length)]}
-document.getElementById("pass").innerText=p
-}
-
-function square(){
-let n=document.getElementById("sq").value
-document.getElementById("sqResult").innerText=n*n
-}
-
-function cube(){
-let n=document.getElementById("cube").value
-document.getElementById("cubeResult").innerText=n*n*n
-}
-
-function discount(){
-let p=document.getElementById("price").value
-let d=document.getElementById("discount").value
-document.getElementById("discountResult").innerText=p-(p*d/100)
-}
-
-function dice(){
-document.getElementById("diceResult").innerText=Math.floor(Math.random()*6)+1
-}
-
-function evenodd(){
-let n=document.getElementById("num").value
-document.getElementById("evenoddResult").innerText=(n%2==0?"Even":"Odd")
-}
-
-function minutesToHours(){
-let m=document.getElementById("minutes").value
-document.getElementById("minutesResult").innerText=(m/60)+" hours"
-}
-
-function color(){
-let c="#"+Math.floor(Math.random()*16777215).toString(16)
-document.getElementById("colorResult").innerText=c
-}
-
-function searchTools(){
-
-let input=document.getElementById("searchInput").value.toLowerCase()
-
-let cards=document.getElementsByClassName("card")
-
-for(let i=0;i<cards.length;i++){
-
-let title=cards[i].getElementsByTagName("h3")[0].innerText.toLowerCase()
-
-cards[i].style.display=title.includes(input)?"block":"none"
-
-}
-
-function percentage(){
-
-let a=document.getElementById("num1").value
-let b=document.getElementById("num2").value
-
-document.getElementById("percentageResult").innerText=(a/b*100).toFixed(2)+"%"
-
-}
-
-function age(){
-
-let birth=new Date(document.getElementById("birthdate").value)
-
-let today=new Date()
-
-let age=today.getFullYear()-birth.getFullYear()
-
-document.getElementById("ageResult").innerText=age+" years"
-
-}
-
-function wordcount(){
-
-let text=document.getElementById("text").value
-
-let words=text.trim().split(/\s+/).length
-
-document.getElementById("wordResult").innerText=words
-
-}
-
-function charcount(){
-
-let text=document.getElementById("charText").value
-
-document.getElementById("charResult").innerText=text.length
-
-}
-
-function temp(){
-
-let c=document.getElementById("cel").value
-
-document.getElementById("tempResult").innerText=(c*9/5+32)+" F"
-
-}
-
-function interest(){
-
-let p=document.getElementById("principal").value
-
-let r=document.getElementById("rate").value
-
-document.getElementById("interestResult").innerText=(p*r/100)
-
-}
-
-function namegen(){
-
-let names=["Alex","Nova","Pixel","Orion","Luna"]
-
-document.getElementById("nameResult").innerText=names[Math.floor(Math.random()*names.length)]
-
-}
-
-function binary(){
-
-let n=document.getElementById("decimal").value
-
-document.getElementById("binaryResult").innerText=Number(n).toString(2)
-
-}
-
-function tipcalc(){
-
-let b=document.getElementById("bill").value
-
-let t=document.getElementById("tip").value
-
-document.getElementById("tipResult").innerText=b*t/100
-
-}
-
-function quote(){
-
-let q=[
-"Stay hungry stay foolish",
-"Consistency beats talent",
-"Small steps every day",
-"Discipline creates freedom"
-]
-
-document.getElementById("quoteResult").innerText=q[Math.floor(Math.random()*q.length)]
-
-}
-  
-}
-
-</script>
-
-
 </body>
+
 </html>
-
-
