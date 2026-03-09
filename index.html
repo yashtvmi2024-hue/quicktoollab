@@ -1,45 +1,11 @@
-<think>
-To build "QuickToolLab," I need to create a structure that is modular, fast, and easy to navigate. Since the user requested a single response, I will provide a complete, single-file solution (HTML, CSS, and JS combined) that functions as a Single Page Application (SPA). This approach ensures the site loads instantly without needing a backend server for routing, which fits the "fast loading" requirement perfectly.
-
-**Plan:**
-1.  **HTML Structure:** A semantic layout with a Header, Main Content Area (dynamic), and Footer.
-2.  **CSS (Styling):**
-    *   Use CSS Variables for a consistent color palette (Light background, simple accents).
-    *   Flexbox and Grid for responsive layout.
-    *   Clean typography (system fonts for speed).
-    *   Card-based design for the tool list.
-3.  **JavaScript (Logic):**
-    *   **Routing:** A simple function to switch between the "Home" view and specific "Tool" views without reloading.
-    *   **Tool Logic:** Implement the specific algorithms for the requested calculators and generators.
-    *   **DOM Manipulation:** Dynamically render the active tool's interface.
-
-**Tool Implementation Details:**
-*   *BMI:* Standard formula (weight/height^2).
-*   *Protein:* Formula based on weight and activity level.
-*   *Water:* Formula based on weight.
-*   *Generators (Captions, Prompts, etc.):* Arrays of templates or random words combined to create unique outputs.
-*   *Study Schedule:* A simple time-block generator.
-
-**SEO & Performance:**
-*   Use semantic tags (`<header>`, `<main>`, `<article>`).
-*   Minimal external dependencies (no Bootstrap or jQuery).
-*   Meta tags included in the head.
-
-Let's write the code.
-</think>Here is a complete, single-file solution for **QuickToolLab**. This code includes the HTML structure, modern CSS styling, and JavaScript logic for all the requested tools.
-
-You can save this code as `index.html` and open it in any browser.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickToolLab - Free Online Tools & Calculators</title>
-    <meta name="description" content="A collection of free, fast, and useful online tools including calculators, generators, and planners.">
+    <title>QuickToolLab - Free Online Tools</title>
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- CSS STYLES --- */
         :root {
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
@@ -54,24 +20,23 @@ You can save this code as `index.html` and open it in any browser.
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
         
-        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+        body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* --- LAYOUT --- */
         header { background: var(--card-bg); border-bottom: 1px solid var(--border); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
         .nav-btn { background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--text-muted); margin-left: 1rem; }
         .nav-btn:hover { color: var(--primary); }
 
-        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; min-height: 80vh; }
+        main { max-width: 1200px; margin: 2rem auto; padding: 0 1rem; flex: 1; }
 
-        /* --- HOME PAGE (GRID) --- */
+        /* Home Grid */
         .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
         .tool-card { background: var(--card-bg); padding: 1.5rem; border-radius: var(--radius); border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
         .tool-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--primary); }
         .tool-card h3 { margin-bottom: 0.5rem; color: var(--text-main); }
         .tool-card p { color: var(--text-muted); font-size: 0.9rem; }
 
-        /* --- TOOL PAGE --- */
+        /* Tool Page */
         .tool-container { max-width: 600px; margin: 0 auto; background: var(--card-bg); padding: 2rem; border-radius: var(--radius); box-shadow: var(--shadow); }
         .tool-header { margin-bottom: 2rem; text-align: center; }
         .tool-header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
@@ -79,7 +44,7 @@ You can save this code as `index.html` and open it in any browser.
         
         .form-group { margin-bottom: 1.5rem; }
         .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; font-size: 0.9rem; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
+        .form-group input, .form-group select { width: 100%; padding: 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; transition: border-color 0.2s; }
         .form-group input:focus { outline: none; border-color: var(--primary); }
 
         .btn { display: inline-block; width: 100%; padding: 0.75rem; background: var(--primary); color: white; border: none; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
@@ -88,10 +53,10 @@ You can save this code as `index.html` and open it in any browser.
         .result-box { margin-top: 2rem; padding: 1.5rem; background: #eff6ff; border-radius: 8px; border: 1px solid #bfdbfe; display: none; }
         .result-box h4 { margin-bottom: 0.5rem; color: var(--primary); }
 
-        /* --- UTILS --- */
-        .hidden { display: none !important; }
         .back-link { display: inline-block; margin-bottom: 1rem; color: var(--text-muted); text-decoration: none; }
         .back-link:hover { color: var(--primary); }
+
+        footer { text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: auto; }
 
         @media (max-width: 600px) {
             header { padding: 1rem; }
@@ -109,11 +74,15 @@ You can save this code as `index.html` and open it in any browser.
     </header>
 
     <main id="app">
-        <!-- Content injected via JS -->
+        <!-- Content will be loaded here -->
     </main>
 
+    <footer>
+        <p>&copy; 2023 QuickToolLab. All tools are free to use.</p>
+    </footer>
+
     <script>
-        // --- DATA & LOGIC ---
+        // --- DATA ---
         const tools = [
             { id: 'bmi', name: 'BMI Calculator', desc: 'Calculate your Body Mass Index to check your health status.' },
             { id: 'protein', name: 'Protein Intake Calculator', desc: 'Find out how much protein you need daily based on your goals.' },
@@ -127,6 +96,7 @@ You can save this code as `index.html` and open it in any browser.
             { id: 'yt-title', name: 'YouTube Title Generator', desc: 'Generate click-worthy titles for your next video.' }
         ];
 
+        // --- APP LOGIC ---
         const app = {
             container: document.getElementById('app'),
 
@@ -150,24 +120,14 @@ You can save this code as `index.html` and open it in any browser.
 
             loadTool: function(id) {
                 const tool = tools.find(t => t.id === id);
+                let inputsHtml = '';
                 
                 // Define Inputs based on tool ID
-                let inputsHtml = '';
-                let logicHtml = '';
-
                 switch(id) {
                     case 'bmi':
                         inputsHtml = `
                             <div class="form-group"><label>Weight (kg)</label><input type="number" id="bmi-w" placeholder="e.g. 70"></div>
                             <div class="form-group"><label>Height (cm)</label><input type="number" id="bmi-h" placeholder="e.g. 175"></div>
-                        `;
-                        logicHtml = `
-                            const w = parseFloat(document.getElementById('bmi-w').value);
-                            const h = parseFloat(document.getElementById('bmi-h').value) / 100;
-                            if(!w || !h) return "Please enter valid numbers.";
-                            const bmi = (w / (h * h)).toFixed(1);
-                            let status = bmi < 18.5 ? "Underweight" : bmi < 25 ? "Normal Weight" : bmi < 30 ? "Overweight" : "Obese";
-                            return `Your BMI is <strong>${bmi}</strong> (${status}).`;
                         `;
                         break;
                     case 'protein':
@@ -182,23 +142,10 @@ You can save this code as `index.html` and open it in any browser.
                                 </select>
                             </div>
                         `;
-                        logicHtml = `
-                            const w = parseFloat(document.getElementById('prot-w').value);
-                            const act = parseFloat(document.getElementById('prot-act').value);
-                            if(!w) return "Please enter weight.";
-                            const prot = Math.round(w * act);
-                            return `You should aim for <strong>${prot}g</strong> of protein daily.`;
-                        `;
                         break;
                     case 'water':
                         inputsHtml = `
                             <div class="form-group"><label>Weight (kg)</label><input type="number" id="water-w" placeholder="e.g. 70"></div>
-                        `;
-                        logicHtml = `
-                            const w = parseFloat(document.getElementById('water-w').value);
-                            if(!w) return "Please enter weight.";
-                            const water = (w * 0.033).toFixed(1);
-                            return `You should drink approximately <strong>${water} Liters</strong> of water daily.`;
                         `;
                         break;
                     case 'prompt':
@@ -213,11 +160,6 @@ You can save this code as `index.html` and open it in any browser.
                                 </select>
                             </div>
                         `;
-                        logicHtml = `
-                            const sub = document.getElementById('prompt-sub').value || "A mysterious scene";
-                            const style = document.getElementById('prompt-style').value;
-                            return `Prompt: <strong>${sub}, ${style} style, cinematic lighting, 8k resolution, highly detailed.</strong>`;
-                        `;
                         break;
                     case 'caption':
                         inputsHtml = `
@@ -230,45 +172,15 @@ You can save this code as `index.html` and open it in any browser.
                                 </select>
                             </div>
                         `;
-                        logicHtml = `
-                            const vibe = document.getElementById('cap-vibe').value;
-                            const captions = {
-                                'Funny': "I'm not lazy, I'm just on energy saving mode. 😴",
-                                'Motivational': "Dream big. Work hard. Stay humble. 💪",
-                                'Short & Cool': "Good vibes only. ✨",
-                                'Question': "What's your favorite way to relax? 👇"
-                            };
-                            return captions[vibe];
-                        `;
                         break;
                     case 'schedule':
                         inputsHtml = `
                             <div class="form-group"><label>Start Time</label><input type="time" id="sched-start" value="09:00"></div>
                             <div class="form-group"><label>Break Duration (mins)</label><input type="number" id="sched-break" value="15"></div>
                         `;
-                        logicHtml = `
-                            const start = document.getElementById('sched-start').value;
-                            const breakMins = parseInt(document.getElementById('sched-break').value);
-                            let time = start.split(':').map(Number);
-                            let output = "<strong>Study Plan:</strong><br>";
-                            for(let i=0; i<4; i++) {
-                                output += `${time[0]}:${time[1].toString().padStart(2,'0')} - Study Session<br>`;
-                                time[1] += 50; // 50 min study
-                                if(time[1] >= 60) { time[0]++; time[1] -= 60; }
-                                output += `${time[0]}:${time[1].toString().padStart(2,'0')} - Break (${breakMins} mins)<br>`;
-                                time[1] += breakMins;
-                                if(time[1] >= 60) { time[0]++; time[1] -= 60; }
-                            }
-                            return output;
-                        `;
                         break;
                     case 'movie':
                         inputsHtml = `<p>Just click generate to find your next movie night pick!</p>`;
-                        logicHtml = `
-                            const movies = ["The Shawshank Redemption", "Inception", "Spirited Away", "The Dark Knight", "Pulp Fiction", "Interstellar", "The Grand Budapest Hotel"];
-                            const random = movies[Math.floor(Math.random() * movies.length)];
-                            return `Watch: <strong>${random}</strong>`;
-                        `;
                         break;
                     case 'workout':
                         inputsHtml = `
@@ -280,46 +192,15 @@ You can save this code as `index.html` and open it in any browser.
                                 </select>
                             </div>
                         `;
-                        logicHtml = `
-                            const days = document.getElementById('work-days').value;
-                            let routine = "";
-                            if(days == 3) routine = "Day 1: Chest/Triceps<br>Day 2: Rest<br>Day 3: Back/Biceps<br>Day 4: Rest<br>Day 5: Legs/Shoulders";
-                            else if(days == 4) routine = "Day 1: Upper Body<br>Day 2: Lower Body<br>Day 3: Rest<br>Day 4: Upper Body<br>Day 5: Lower Body";
-                            else routine = "Day 1: Chest<br>Day 2: Back<br>Day 3: Legs<br>Day 4: Shoulders<br>Day 5: Arms";
-                            return `<strong>Split:</strong><br>${routine}`;
-                        `;
                         break;
                     case 'habit':
                         inputsHtml = `
                             <div class="form-group"><label>Goal</label><input type="text" id="habit-goal" placeholder="e.g. Read 10 pages"></div>
                         `;
-                        logicHtml = `
-                            const goal = document.getElementById('habit-goal').value || "New Habit";
-                            return `
-                                <strong>Tracker for: ${goal}</strong><br><br>
-                                [ ] Monday<br>
-                                [ ] Tuesday<br>
-                                [ ] Wednesday<br>
-                                [ ] Thursday<br>
-                                [ ] Friday<br>
-                                [ ] Saturday<br>
-                                [ ] Sunday
-                            `;
-                        `;
                         break;
                     case 'yt-title':
                         inputsHtml = `
                             <div class="form-group"><label>Topic</label><input type="text" id="yt-topic" placeholder="e.g. Coding Tutorial"></div>
-                        `;
-                        logicHtml = `
-                            const topic = document.getElementById('yt-topic').value || "Your Topic";
-                            const titles = [
-                                `How to Master ${topic} in 10 Minutes`,
-                                `The Secret to ${topic} Nobody Tells You`,
-                                `Stop Doing ${topic} Wrong!`,
-                                `I Tried ${topic} for 30 Days...`
-                            ];
-                            return titles[Math.floor(Math.random() * titles.length)];
                         `;
                         break;
                 }
@@ -331,7 +212,7 @@ You can save this code as `index.html` and open it in any browser.
                             <h1>${tool.name}</h1>
                             <p>${tool.desc}</p>
                         </div>
-                                               <div class="tool-interface">
+                        <div class="tool-interface">
                             ${inputsHtml}
                             <button class="btn" onclick="app.runTool('${id}')">Generate Result</button>
                         </div>
@@ -345,7 +226,6 @@ You can save this code as `index.html` and open it in any browser.
             },
 
             runTool: function(id) {
-                // Get the logic string defined in the switch statement
                 let logic = '';
                 switch(id) {
                     case 'bmi':
@@ -416,42 +296,3 @@ You can save this code as `index.html` and open it in any browser.
                         const goal = document.getElementById('habit-goal').value || "New Habit";
                         logic = `
                             <strong>Tracker for: ${goal}</strong><br><br>
-                            [ ] Monday<br>
-                            [ ] Tuesday<br>
-                            [ ] Wednesday<br>
-                            [ ] Thursday<br>
-                            [ ] Friday<br>
-                            [ ] Saturday<br>
-                            [ ] Sunday
-                        `;
-                        break;
-                    case 'yt-title':
-                        const topic = document.getElementById('yt-topic').value || "Your Topic";
-                        const titles = [
-                            `How to Master ${topic} in 10 Minutes`,
-                            `The Secret to ${topic} Nobody Tells You`,
-                            `Stop Doing ${topic} Wrong!`,
-                            `I Tried ${topic} for 30 Days...`
-                        ];
-                        logic = titles[Math.floor(Math.random() * titles.length)];
-                        break;
-                }
-
-                // Display Result
-                const resultBox = document.getElementById('result-area');
-                const resultContent = document.getElementById('result-content');
-                resultContent.innerHTML = logic;
-                resultBox.style.display = 'block';
-            }
-        };
-
-        // Initialize App
-        app.init();
-    </script>
-
-    <footer style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem; border-top: 1px solid var(--border); margin-top: 2rem;">
-        <p>&copy; 2023 QuickToolLab. All tools are free to use.</p>
-    </footer>
-
-</body>
-</html>
